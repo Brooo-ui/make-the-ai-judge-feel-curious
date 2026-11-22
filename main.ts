@@ -9,10 +9,11 @@ const TEXT =
   "travelling toward you ever since. It is almost here. It has one thing to tell " +
   "you, and you have not heard it yet.";
 
-// The gate allows 1 to 280 characters; refuse to write anything outside it
-// rather than shipping an entry the gate would score 0.
+// The gate allows 1 to 280 characters and rejects whitespace-only text;
+// refuse to write anything outside it rather than shipping an entry the
+// gate would score 0.
 const length = [...TEXT].length;
-if (length < 1 || length > 280) {
+if (length < 1 || length > 280 || TEXT.trim().length === 0) {
   console.error(`entry text is ${length} characters, outside the 1-280 gate`);
   process.exit(1);
 }
